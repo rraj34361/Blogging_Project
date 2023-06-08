@@ -1,6 +1,10 @@
 const authorModel= require('../models/authorModel')
 const blogModel = require('../models/blogModel')
 const {isValid} = require('../validators/validation')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const  {Sceret_key} = process.env
+
 
 // Create a new author
 const createAuthor = async (req, res) => {
@@ -31,6 +35,54 @@ const createAuthor = async (req, res) => {
     }
   };
   
+// ******************************************************************************* //
+
+const loginAuthor= async (req, res) => {
+  try{
+  let data = req.body
+  if(!data.email ||!data.password) 
+  return res.status(400).send({
+  status :false, message : "email & password must be needed"})
+
+  let authorEmail= data.email
+  let password= data.password
+  
+    if(!isValid(password)){
+      return  res.status(400).send({status:false , message : "Password should be valid"})
+    }
+
+  // Email validation
+if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(authorEmail)){
+  return  res.status(400).send({status:false , message : "Email should be valid email address"})
+}
+ 
+  let author= await authorModel.findOne({
+  email: authorEmail, password: password
+  })
+ 
+  if(author==null) return res.status(401).json({
+  status: false, msg: "author doesn't exists"
+  })
+ 
+  //login successful than generating token
+  let token= jwt.sign(
+  {
+  authorId: author._id.toString(),
+
+  },
+  Sceret_key
+  )
+ 
+  res.setHeader("x-api-key", token)
+  res.status(200).json({status: true, data: {token : token}})
+ }catch (err) {
+res.status(500).send({
+status : false, message : err.message})
+}
+ }
+
+  
 module.exports= {
-    createAuthor 
+    createAuthor ,
+    loginAuthor
     }

@@ -1,4 +1,5 @@
 const authorModel = require('../models/authorModel')
+
 const isValid = function(value){
   if(typeof value === "undefined"|| value === null) return false
   if(typeof value === "string" && value.trim().length === 0) return false
@@ -36,3 +37,11 @@ const authorValidation = async (req, res, next) => {
 
 
   module.exports = { authorValidation  ,isValid};
+
+
+
+
+
+PORT = 3000
+string = "mongodb+srv://rraj34361:bXgwmkpBz9CHdAfr@cluster0.brjrlou.mongodb.net/Blogging-project"
+Sceret_key = "yek_terect_ivar" 

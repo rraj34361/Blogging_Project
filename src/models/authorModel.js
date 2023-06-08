@@ -6,12 +6,12 @@ const authorSchema = new mongoose.Schema({
   fname: { 
     type: String,
      required: true,
-
+    trim : true,
     },
   lname: { 
     type: String,
      required: true,
-
+   trim : true
     },
   title: { 
     type: String,
@@ -25,6 +25,7 @@ const authorSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    trim : true
     },
 
 },{timestamps:true});

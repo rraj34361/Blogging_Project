@@ -4,15 +4,14 @@ const dotenv = require('dotenv')
 const routes = require('./routes/route')
 const app = express()
 
-
 //  for accessing enviornment variables
 dotenv.config()
-
+const {string, PORT} = process.env
 
 app.use(express.json())
 
 /* This code is establishing a connection with a MongoDB database using Mongoose. */
-mongoose.connect(process.env.String, {
+mongoose.connect(string, {
     useNewUrlparser : true
 })
 .then(()=>{
@@ -28,4 +27,4 @@ console.log(err.message)
 app.use('/', routes)
 
 
-app.listen(process.env.PORT, () => console.log(`app listening on port ${process.env.PORT}!`))
+app.listen(PORT, () => console.log(`app listening on port ${PORT}!`))
