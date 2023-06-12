@@ -61,7 +61,7 @@ if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(authorEmail)){
   })
  
   if(author==null) return res.status(401).json({
-  status: false, msg: "author doesn't exists"
+  status: false, message: "author doesn't exists"
   })
  
   //login successful than generating token
