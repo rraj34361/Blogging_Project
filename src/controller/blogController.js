@@ -119,7 +119,7 @@ console.log(req.body)
     // checking the decoded token's authorId and blog's authorId is same or not
     //:- checking authorization
     if (req["x-api-key"].authorId != blog.authorId.toString())
-      return res.status(401).send({
+      return res.status(403).send({
         status: false,
         message: "unauthorized",
       });
