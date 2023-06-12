@@ -1,5 +1,5 @@
 const express = require('express')
-const {default : mongoose, mongo} = require('mongoose')
+const {default : mongoose} = require('mongoose')
 const dotenv = require('dotenv')
 const routes = require('./routes/route')
 const app = express()
@@ -28,9 +28,3 @@ app.use('/', routes)
 
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}!`))
-
-
-
-PORT = 3000
-string = "mongodb+srv://rraj34361:bXgwmkpBz9CHdAfr@cluster0.brjrlou.mongodb.net/Blogging-project"
-Sceret_key = "yek_terect_ivar" 
