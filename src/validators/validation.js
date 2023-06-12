@@ -1,3 +1,4 @@
+const { connection } = require('mongoose')
 const authorModel = require('../models/authorModel')
 
 const isValid = function(value){
@@ -37,6 +38,16 @@ const authorValidation = async (req, res, next) => {
 
 
   module.exports = { authorValidation  ,isValid};
+
+
+
+
+  PORT = 3000
+  password = "mongodb+srv://rraj34361:bXgwmkpBz9CHdAfr@cluster0.brjrlou.mongodb.net/Ravi34361"
+  Host = 'redis-16476.c212.ap-south-1-1.ec2.cloud.redislabs.com'
+  RedisPort =  16476
+  RedisPassword = 'lW4mvHKbk3LHvaX3u5LxICpwGtVawdI1'
+
 
 
 
