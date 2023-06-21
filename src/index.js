@@ -28,3 +28,8 @@ app.use('/', routes)
 
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}!`))
+
+
+PORT = 3000
+string = "mongodb+srv://rraj34361:bXgwmkpBz9CHdAfr@cluster0.brjrlou.mongodb.net/Blogging-project"
+Sceret_key = "yek_terect_ivar" 

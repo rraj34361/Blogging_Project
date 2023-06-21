@@ -188,23 +188,24 @@ const deleteBlog = async (req, res) => {
   try {
     const blogId = req.params.blogId;
 
-    // Check if the blogId is valid
-    const isValidId = mongoose.isValidObjectId(blogId);
-    if (!isValidId) {
-      return res.status(400).json({
-        status: false,
-        message: "Invalid blogId",
-      });
-    }
     const loginAuthor = req["x-api-key"].authorId;
 
     // Check if the blogId exists and is not deleted
     const blog = await blogModel.findOne({ _id: blogId, isDeleted: false , deletedAt : null });
 
     if (!blog) {
-      return res.status(400).json({
+      return res.status(404).json({
         status: false,
         message: "Blog not found",
+      });
+    }
+    
+    // Check if the blogId is valid
+    const isValidId = mongoose.isValidObjectId(blogId);
+    if (!isValidId) {
+      return res.status(400).json({
+        status: false,
+        message: "Invalid blogId",
       });
     }
 
