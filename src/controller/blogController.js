@@ -94,7 +94,7 @@ const getAllBlogs = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const blogId = req.params.blogId;
-console.log(req.body)
+// console.log(req.body)
     if(Object.keys(req.body).length == 0){
     return   res.status(400).send({status : false, message : "plz give data for updation"})
     }
@@ -171,7 +171,7 @@ console.log(req.body)
     const updatedBlog = await blog.save();
     res.status(200).json({
       status: true,
-      message: "Blog updated",
+      message: "Blog update is successful",
       data: updatedBlog,
     });
   } catch (error) {
@@ -202,7 +202,7 @@ const deleteBlog = async (req, res) => {
     const blog = await blogModel.findOne({ _id: blogId, isDeleted: false , deletedAt : null });
 
     if (!blog) {
-      return res.status(404).json({
+      return res.status(400).json({
         status: false,
         message: "Blog not found",
       });
@@ -210,7 +210,7 @@ const deleteBlog = async (req, res) => {
 
     // checking rights of author  for deletion
     if (blog.authorId.toString() != req["x-api-key"].authorId)
-      return res.status(401).send({
+      return res.status(403).send({
         status: false,
         message: "unauthorized",
       });
